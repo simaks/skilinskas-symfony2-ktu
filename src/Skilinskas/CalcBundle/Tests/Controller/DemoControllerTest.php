@@ -10,6 +10,8 @@ class CalculatorControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
+        $client->request('GET', '/calc/add/1/2/');
+
         $response=  json_decode($client->getResponse()->getContent());
 
         $this->assertEquals(true, $response->success);
