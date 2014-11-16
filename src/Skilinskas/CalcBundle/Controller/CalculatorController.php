@@ -11,14 +11,21 @@ use Acme\DemoBundle\Form\ContactType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
-class CalcController extends Controller
+class CalculatorController extends Controller
 {
     /**
      * @Route("/", name="_welcome")
      * @Template()
      */
-    public function indexAction()
+    public function addAction($x, $y)
     {
-        return [];
+        return $this->render('SkilinskasCalcBundle:Calculator:index.html.twig', [
+            'result' => [
+                'success' => true,
+                'x' => $x,
+                'y' => $y,
+                'ans' => $x + $y,
+            ],
+        ]);
     }
 }

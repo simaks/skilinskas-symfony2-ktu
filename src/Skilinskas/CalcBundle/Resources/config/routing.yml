@@ -2,6 +2,6 @@ _welcome:
     path:     /
     defaults: { _controller: SkilinskasCalcBundle:Welcome:index }
 _calculator:
-    path:     /
-    defaults: { _controller: SkilinskasCalcBundle:Calculator:index }
+    path:     /calc/add/{x}/{y}/
+    defaults: { _controller: SkilinskasCalcBundle:Calculator:add, x: 0, y: 0 }
 
