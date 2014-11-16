@@ -1,0 +1,7 @@
+_welcome:
+    path:     /
+    defaults: { _controller: SkilinskasCalcBundle:Welcome:index }
+_calculator:
+    path:     /
+    defaults: { _controller: SkilinskasCalcBundle:Calculator:index }
+
