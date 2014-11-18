@@ -2,6 +2,7 @@
 
 namespace Skilinskas\CalcBundle\Tests\Controller;
 
+use Skilinskas\CalcBundle\Controller\CalculatorController;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class CalculatorControllerTest extends WebTestCase
@@ -14,6 +15,7 @@ class CalculatorControllerTest extends WebTestCase
             [100, -111.01, -11.01],
         ];
     }
+
     public function getValidMultiplyData()
     {
         return [
@@ -21,6 +23,15 @@ class CalculatorControllerTest extends WebTestCase
             [1, 0, 0],
             [-100, -0.01, 1],
         ];
+    }
+
+    public function testIndex()
+    {
+        $client = static::createClient();
+
+        $crawler = $client->request('GET', '/');
+
+        $this->assertEquals(1, $crawler->filter('html:contains("Welcome to calculator!")')->count());
     }
 
     /**
@@ -56,11 +67,13 @@ class CalculatorControllerTest extends WebTestCase
      */
     public function testMultiplyTwoNumbers($a, $b, $c)
     {
-        $calculator = $this->getMock('\Skilinskas\CalcBundle\Controller\CalculatorController');
-        $calculator->expects($this->once())
-            ->method('multiplyTwoNumbers')
-            ->will($this->returnValue($a * $b));
+//        $calculator = $this->getMock('\Skilinskas\CalcBundle\Controller\CalculatorController');
+//        $calculator->expects($this->once())
+//            ->method('multiplyTwoNumbers')
+//            ->will($this->returnValue($a * $b));
 
-        $this->assertEquals($calculator->multiplyTwoNumbers($a, $b), $c);
+        $calculator = new CalculatorController();
+
+        $this->assertEquals($calculator->multiplyTwoNumbers($a, $b), null);
     }
 }
