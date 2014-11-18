@@ -22,9 +22,9 @@ class CalculatorControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/calc/add/'.$a.'/'.$b.'/');
+        $client->request('GET', sprintf('/calc/add/%f/%f/', $a, $b));
 
-        $response=  json_decode($client->getResponse()->getContent());
+        $response = json_decode($client->getResponse()->getContent());
 
         $this->assertEquals(true, $response->success);
         $this->assertEquals($c, $response->ans);
