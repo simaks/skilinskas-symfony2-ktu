@@ -5,6 +5,7 @@ namespace Skilinskas\CalcBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Acme\DemoBundle\Form\ContactType;
 
 // these import the "@Route" and "@Template" annotations
@@ -18,7 +19,8 @@ class CalculatorController extends Controller
      * @param $y
      * @return mixed
      */
-    public function addTwoNumbers($x, $y) {
+    public function addTwoNumbers($x, $y)
+    {
         return $x + $y;
     }
 
@@ -27,7 +29,8 @@ class CalculatorController extends Controller
      * @param $y
      * @return mixed
      */
-    public function multiplyTwoNumbers($x, $y) {
+    public function multiplyTwoNumbers($x, $y)
+    {
         return null; // TODO implement;
     }
 
@@ -37,13 +40,13 @@ class CalculatorController extends Controller
      */
     public function addAction($x, $y)
     {
-        return $this->render('SkilinskasCalcBundle:Calculator:index.html.twig', [
-            'result' => [
+        return new Response(
+            json_encode([
                 'success' => true,
                 'x' => $x,
                 'y' => $y,
                 'ans' => $this->addTwoNumbers($x, $y),
-            ],
-        ]);
+            ])
+        );
     }
 }
