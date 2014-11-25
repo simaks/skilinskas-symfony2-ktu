@@ -1,0 +1,4 @@
+skilinskas_diary:
+    resource: "@SkilinskasDiaryBundle/Resources/config/routing.yml"
+    prefix:   /
+

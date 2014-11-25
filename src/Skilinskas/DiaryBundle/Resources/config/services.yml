@@ -1,0 +1,4 @@
+services:
+#    skilinskas_diary.example:
+#        class: Skilinskas\DiaryBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

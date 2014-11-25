@@ -1,0 +1,3 @@
+skilinskas_diary_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: SkilinskasDiaryBundle:Default:index }
