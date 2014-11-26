@@ -11,3 +11,5 @@
 /composer.phar
 .idea
 -c
+coverage
+composer.lock
