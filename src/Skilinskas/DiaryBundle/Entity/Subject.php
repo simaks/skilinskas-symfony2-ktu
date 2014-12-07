@@ -61,4 +61,15 @@ class Subject
     {
         return $this->name;
     }
+
+    /**
+     * @return array
+     */
+    public function getAll()
+    {
+        return [
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+        ];
+    }
 }

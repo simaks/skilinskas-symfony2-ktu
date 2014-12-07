@@ -121,4 +121,17 @@ class Student
     {
         return $this->birth;
     }
+
+    /**
+     * @return array
+     */
+    public function getAll()
+    {
+        return [
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+            'surname' => $this->getSurname(),
+            'birth' => $this->getBirth(),
+        ];
+    }
 }

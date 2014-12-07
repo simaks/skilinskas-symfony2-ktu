@@ -9,7 +9,4 @@ use Doctrine\ORM\EntityRepository;
  */
 class SubjectRepository extends EntityRepository
 {
-    public function findAllFiltered()
-    {
-    }
 }
