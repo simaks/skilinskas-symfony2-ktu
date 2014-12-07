@@ -24,13 +24,13 @@ class GradeRepository extends EntityRepository
             $sql = <<<SQL
 SELECT g FROM SkilinskasDiaryBundle:Grade g
 WHERE g.date >= '$date_from' AND g.date <= '$date_to'
-ORDER BY g.date DESC
+ORDER BY g.date
 SQL;
         } else {
             $sql = <<<SQL
 SELECT g FROM SkilinskasDiaryBundle:Grade g
 WHERE g.date >= '$date_from' AND g.date <= '$date_to' AND g.subject = $subject
-ORDER BY g.date DESC
+ORDER BY g.date
 SQL;
         }
 
