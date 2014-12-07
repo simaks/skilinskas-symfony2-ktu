@@ -20,24 +20,18 @@ class GradeRepository extends EntityRepository
         if ($date_to == null) {
             $date_to = date("Y-m-d");
         }
-        if ($subject == null) {
-            $sql = <<<SQL
+        $sql = <<<SQL
 SELECT g FROM SkilinskasDiaryBundle:Grade g
-WHERE g.date >= '$date_from' AND g.date <= '$date_to'
+WHERE g.date >= :date_from AND g.date <= :date_to
 ORDER BY g.date
 SQL;
-        } else {
-            $sql = <<<SQL
-SELECT g FROM SkilinskasDiaryBundle:Grade g
-WHERE g.date >= '$date_from' AND g.date <= '$date_to' AND g.subject = $subject
-ORDER BY g.date
-SQL;
-        }
 
         return $this->getEntityManager()
             ->createQuery(
                 $sql
             )
+            ->setParameter('date_from', $date_from)
+            ->setParameter('date_to', $date_to)
             ->getResult();
     }
 }
