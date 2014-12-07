@@ -5,3 +5,7 @@
     Order deny,allow
     Deny from all
 </IfModule>
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+    Header set Access-Control-Allow-Credentials true
+</IfModule>

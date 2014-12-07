@@ -1,3 +1,9 @@
 skilinskas_diary_homepage:
     path:     /hello/{name}
     defaults: { _controller: SkilinskasDiaryBundle:Default:index }
+skilinskas_diary_grades:
+    path:     /api/grades
+    defaults: { _controller: SkilinskasDiaryBundle:Grade:grades }
+skilinskas_diary_grade_avg:
+    path:     /api/average
+    defaults: { _controller: SkilinskasDiaryBundle:Grade:average }
