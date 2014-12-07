@@ -29,11 +29,18 @@ class Grade
     private $grade;
 
     /**
-     * @var string
+     * @var integer
      *
-     * @ORM\Column(name="subject", type="string", length=255)
+     * @ORM\Column(name="subjectId", type="integer")
      */
-    private $subject;
+    private $subjectId;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="studentId", type="integer")
+     */
+    private $studentId;
 
     /**
      * @var \DateTime
@@ -41,7 +48,6 @@ class Grade
      * @ORM\Column(name="date", type="date")
      */
     private $date;
-
 
     /**
      * Get id
@@ -79,12 +85,12 @@ class Grade
     /**
      * Set subject
      *
-     * @param string $subject
+     * @param integer $subjectId
      * @return Grade
      */
-    public function setSubject($subject)
+    public function setSubjectId($subjectId)
     {
-        $this->subject = $subject;
+        $this->subjectId = $subjectId;
 
         return $this;
     }
@@ -92,11 +98,34 @@ class Grade
     /**
      * Get subject
      *
-     * @return string
+     * @return integer
      */
-    public function getSubject()
+    public function getSubjectId()
     {
-        return $this->subject;
+        return $this->subjectId;
+    }
+
+    /**
+     * Set subject
+     *
+     * @param integer $subjectId
+     * @return Grade
+     */
+    public function setStudentId($subjectId)
+    {
+        $this->subjectId = $subjectId;
+
+        return $this;
+    }
+
+    /**
+     * Get subject
+     *
+     * @return integer
+     */
+    public function getStudentId()
+    {
+        return $this->subjectId;
     }
 
     /**
@@ -127,7 +156,8 @@ class Grade
         return [
             'id' => $this->getId(),
             'grade' => $this->getGrade(),
-            'subject' => $this->getSubject(),
+            'subjectId' => $this->getSubjectId(),
+            'studentId' => $this->getStudentId(),
             'date' => date_format($this->getDate(), 'Y-m-d'),
         ];
     }

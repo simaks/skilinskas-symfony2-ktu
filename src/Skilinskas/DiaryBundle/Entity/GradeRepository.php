@@ -21,7 +21,7 @@ class GradeRepository extends EntityRepository
             $date_to = date("Y-m-d");
         }
         $sql = <<<SQL
-SELECT g FROM SkilinskasDiaryBundle:Grade g
+SELECT g FROM 'SkilinskasDiaryBundle:Grade' g
 WHERE g.date >= :date_from AND g.date <= :date_to
 ORDER BY g.date
 SQL;
