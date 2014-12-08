@@ -14,10 +14,10 @@ class GradeControllerTest extends WebTestCase
 
         $client->request('GET', '/api/grades');
 
-        $response = json_decode($client->getResponse()->getContent());
+        $response = $client->getResponse()->getContent();
 
-        $this->assertEquals(true, $response->success);
-//        $this->assertEquals(8, $response->result->grades[0]->id);
+        $r = json_decode(substr($response, 1, strlen($response)-2));
+        $this->assertEquals(true, $r->success);
     }
 
 
