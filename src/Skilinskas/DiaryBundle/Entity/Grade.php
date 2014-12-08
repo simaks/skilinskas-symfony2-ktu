@@ -83,7 +83,7 @@ class Grade
     }
 
     /**
-     * Set subject
+     * Set subject id
      *
      * @param integer $subjectId
      * @return Grade
@@ -96,7 +96,7 @@ class Grade
     }
 
     /**
-     * Get subject
+     * Get subject id
      *
      * @return integer
      */
@@ -106,26 +106,26 @@ class Grade
     }
 
     /**
-     * Set subject
+     * Set student id
      *
-     * @param integer $subjectId
+     * @param integer $studentId
      * @return Grade
      */
-    public function setStudentId($subjectId)
+    public function setStudentId($studentId)
     {
-        $this->subjectId = $subjectId;
+        $this->studentId = $studentId;
 
         return $this;
     }
 
     /**
-     * Get subject
+     * Get student id
      *
      * @return integer
      */
     public function getStudentId()
     {
-        return $this->subjectId;
+        return $this->studentId;
     }
 
     /**
