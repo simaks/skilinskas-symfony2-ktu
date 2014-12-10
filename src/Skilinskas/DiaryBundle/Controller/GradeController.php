@@ -144,18 +144,18 @@ class GradeController extends Controller
 
     public function addGradeAction(Request $request)
     {
-        $student = $request->request->get('student');
-        $subject = $request->request->get('subject');
+        $studentId = $request->request->get('studentId');
+        $subjectId = $request->request->get('subjectId');
         $grade = $request->request->get('grade');
         $date = $request->request->get('date');
         $error = '';
         if ($grade == null) {
             $error .= 'Grade not provided. ';
         }
-        if ($student == null) {
+        if ($studentId == null) {
             $error .= 'Student not provided. ';
         }
-        if ($subject == null) {
+        if ($subjectId == null) {
             $error .= 'Subject not provided. ';
         }
         if ($date == null) {
@@ -168,8 +168,8 @@ class GradeController extends Controller
             $gradeObject = new Grade();
             $gradeObject->setDate($date);
             $gradeObject->setGrade($grade);
-            $gradeObject->setSubjectId($subject);
-            $gradeObject->setStudentId($student);
+            $gradeObject->setSubjectId($subjectId);
+            $gradeObject->setStudentId($studentId);
 
             $em = $this->getDoctrine()->getManager();
 

@@ -12,14 +12,14 @@ class Version20141125231203 extends AbstractMigration
 {
     public function up(Schema $schema)
     {
-        $demoDataSize = 100;
+        $demoDataSize = 300;
         $demoDateRange = [strtotime("2014-09-01"), strtotime("2014-12-31")];
         $demoData = [];
         for ($i = 0; $i < $demoDataSize; $i++) {
             $timeStamp = rand($demoDateRange[0], $demoDateRange[1]);
             array_push(
                 $demoData,
-                [rand(0, 10), rand(1, 5), rand(1, 3), date("Y-m-d", $timeStamp)]
+                [rand(4, 10), rand(1, 5), rand(1, 3), date("Y-m-d", $timeStamp)]
             );
         }
 

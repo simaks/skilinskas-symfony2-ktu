@@ -4,6 +4,8 @@ namespace Skilinskas\DiaryBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Skilinskas\DiaryBundle\Entity\Grade;
+use Skilinskas\DiaryBundle\Entity\Subject;
+use Skilinskas\DiaryBundle\Entity\Student;
 
 class GradeControllerTest extends WebTestCase
 {
@@ -24,19 +26,94 @@ class GradeControllerTest extends WebTestCase
         $this->assertEquals($gStudentId, $g['studentId']);
         $this->assertEquals($gDate, $g['date']);
     }
+    public function testSubject () {
+        $subject = new Subject();
+        $name = 9;
+        $subject->setName($name);
 
-    public function testGrades()
+        $s = $subject->getAll();
+        $this->assertEquals($name, $s['name']);
+    }
+
+    public function testStudent () {
+        $student = new Student();
+        $name = 'Tester';
+        $surname = 'Test';
+        $student->setName($name);
+        $student->setSurname($surname);
+
+        $s = $student->getAll();
+        $this->assertEquals($name, $s['name']);
+        $this->assertEquals($surname, $s['surname']);
+    }
+
+    public function testGetSubjects()
     {
         $client = static::createClient();
-
-
-        $client->request('GET', '/api/grades');
+        $client->request('GET', '/api/get/subjects');
 
         $response = $client->getResponse()->getContent();
 
-        $r = json_decode(substr($response, 1, strlen($response)-2));
+        $r = json_decode($response);
         $this->assertEquals(true, $r->success);
     }
 
+    public function testGetStudents()
+    {
+        $client = static::createClient();
+        $client->request('GET', '/api/get/students');
+
+        $response = $client->getResponse()->getContent();
+
+        $r = json_decode($response);
+        $this->assertEquals(true, $r->success);
+    }
+
+    public function testGetGrades()
+    {
+        $client = static::createClient();
+        $client->request('GET', '/api/get/grades', ['studentId' => '*', 'subjectId' => '*']);
+        $response = $client->getResponse()->getContent();
+        $r1 = json_decode($response);
+        $this->assertEquals(true, $r1->success);
+
+        $client->request('GET', '/api/get/grades', ['studentId' => 1, 'subjectId' => 1]);
+        $response = $client->getResponse()->getContent();
+        $r2 = json_decode($response);
+        $this->assertEquals(true, $r2->success);
+
+        $client->request('GET', '/api/get/grades', ['subjectId' => 1]);
+        $response = $client->getResponse()->getContent();
+        $r2 = json_decode($response);
+        $this->assertEquals(true, $r2->success);
+
+        $client->request('GET', '/api/get/grades', ['studentId' => 1]);
+        $response = $client->getResponse()->getContent();
+        $r2 = json_decode($response);
+        $this->assertEquals(true, $r2->success);
+        $this->assertTrue(count($r1->result->grades) >= count($r2->result->grades));
+    }
+
+    public function testAddGrade()
+    {
+        $client = static::createClient();
+        $client->request('POST', '/api/add/grade', [
+            'subjectId' => 1,
+            'studentId' => 1,
+            'grade' => 10,
+            'date' => '2014-12-25',
+        ]);
+        $response = $client->getResponse()->getContent();
+        $r = json_decode($response);
+        $this->assertEquals(true, $r->success);
+
+
+        $client->request('POST', '/api/add/grade');
+
+        $response = $client->getResponse()->getContent();
+
+        $r = json_decode($response);
+        $this->assertEquals(false, $r->success);
+    }
 
 }
