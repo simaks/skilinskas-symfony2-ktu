@@ -99,6 +99,8 @@ class GradeController extends Controller
             'error' => '',
             'result' => [
                 'grades' => $grades,
+                'date_from' => $date_from,
+                'date_to' => $date_to,
             ],
         ]));
         $response->headers->set('Content-Type', 'application/json');
