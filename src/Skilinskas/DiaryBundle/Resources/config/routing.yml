@@ -1,12 +1,15 @@
-skilinskas_diary_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: SkilinskasDiaryBundle:Default:index }
-skilinskas_diary_grades:
-    path:     /api/grades
-    defaults: { _controller: SkilinskasDiaryBundle:Grade:grade }
-skilinskas_diary_grade_avg:
-    path:     /api/average
-    defaults: { _controller: SkilinskasDiaryBundle:Grade:average }
+skilinskas_diary_get_grades:
+    path:     /api/get/grades
+    defaults: { _controller: SkilinskasDiaryBundle:Grade:getGrades }
+
+skilinskas_diary_get_students:
+    path:     /api/get/students
+    defaults: { _controller: SkilinskasDiaryBundle:Grade:getStudents }
+
+skilinskas_diary_get_subjects:
+    path:     /api/get/subjects
+    defaults: { _controller: SkilinskasDiaryBundle:Grade:getSubjects }
+
 skilinskas_diary_add_grade:
-    path:     /api/add_grade
+    path:     /api/add/grade
     defaults: { _controller: SkilinskasDiaryBundle:Grade:addGrade }
