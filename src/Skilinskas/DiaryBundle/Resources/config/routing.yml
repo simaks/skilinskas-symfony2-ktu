@@ -3,7 +3,10 @@ skilinskas_diary_homepage:
     defaults: { _controller: SkilinskasDiaryBundle:Default:index }
 skilinskas_diary_grades:
     path:     /api/grades
-    defaults: { _controller: SkilinskasDiaryBundle:Grade:grades }
+    defaults: { _controller: SkilinskasDiaryBundle:Grade:grade }
 skilinskas_diary_grade_avg:
     path:     /api/average
     defaults: { _controller: SkilinskasDiaryBundle:Grade:average }
+skilinskas_diary_add_grade:
+    path:     /api/add_grade
+    defaults: { _controller: SkilinskasDiaryBundle:Grade:addGrade }

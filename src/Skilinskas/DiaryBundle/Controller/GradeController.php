@@ -12,7 +12,8 @@ use Skilinskas\DiaryBundle\Entity\Grade;
 
 class GradeController extends Controller
 {
-    private function getGrades($subject = null, $date_from = null, $date_to = null) {
+    private function getGrades($subject = null, $date_from = null, $date_to = null)
+    {
         $grades = $this->getDoctrine()
             ->getRepository('SkilinskasDiaryBundle:Grade')->findAllFiltered($subject, $date_from, $date_to);
 
@@ -24,7 +25,8 @@ class GradeController extends Controller
         return $result;
     }
 
-    public function getSubjects() {
+    public function getSubjects()
+    {
         $subjects = $this->getDoctrine()
             ->getRepository('SkilinskasDiaryBundle:Subject')
             ->findAll();
@@ -36,7 +38,8 @@ class GradeController extends Controller
         return $result;
     }
 
-    public function getStudents() {
+    public function getStudents()
+    {
         $students = $this->getDoctrine()
             ->getRepository('SkilinskasDiaryBundle:Student')
             ->findAll();
@@ -49,11 +52,10 @@ class GradeController extends Controller
         return $result;
     }
 
-    public function gradesAction(Request $request)
+    public function gradeAction(Request $request)
     {
         $date_from = $request->query->get('date_from');
         $date_to = $request->query->get('date_to');
-        $callback = $request->query->get('callback');
         if ($date_from == null) {
             $date_from = date('Y-m-d', strtotime('-7 days'));
         }
@@ -66,8 +68,8 @@ class GradeController extends Controller
 
         $response = new Response();
 
-        $response->setContent($callback . '(' . json_encode([
-            'success' => true,
+        $response->setContent(json_encode([
+                'success' => true,
                 'error' => '',
                 'result' => [
                     'length' => count($grades),
@@ -75,10 +77,54 @@ class GradeController extends Controller
                     'subjects' => $subjects,
                     'students' => $students,
                 ],
-        ]) . ')');
-        $response->setStatusCode(Response::HTTP_OK);
+            ]));
         $response->headers->set('Content-Type', 'application/json');
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+        return $response;
+    }
 
+    public function addGradeAction(Request $request)
+    {
+        $student = $request->request->get('student');
+        $subject = $request->request->get('subject');
+        $grade = $request->request->get('grade');
+        $date = $request->request->get('date');
+        $error = '';
+        if ($grade == null) {
+            $error .= 'Grade not provided. ';
+        }
+        if ($student == null) {
+            $error .= 'Student not provided. ';
+        }
+        if ($subject == null) {
+            $error .= 'Subject not provided. ';
+        }
+        if ($date == null) {
+            $error .= 'Date not provided. ';
+        } else {
+            $date = new \DateTime($date);
+        }
+
+        if ($error == '') {
+            $gradeObject = new Grade();
+            $gradeObject->setDate($date);
+            $gradeObject->setGrade($grade);
+            $gradeObject->setSubjectId($subject);
+            $gradeObject->setStudentId($student);
+
+            $em = $this->getDoctrine()->getManager();
+
+            $em->persist($gradeObject);
+            $em->flush();
+        }
+
+        $response = new Response();
+        $response->setContent(json_encode([
+                'success' => $error == '',
+                'error' => $error,
+            ]));
+        $response->headers->set('Content-Type', 'application/json');
+        $response->headers->set('Access-Control-Allow-Origin', '*');
         return $response;
     }
 }
