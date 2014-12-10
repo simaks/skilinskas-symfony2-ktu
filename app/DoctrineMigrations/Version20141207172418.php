@@ -17,7 +17,7 @@ class Version20141207172418 extends AbstractMigration
             [2, 'Matematika'],
             [3, 'Fizika'],
             [4, 'Objektinis programavimas'],
-            [5, 'Fizika'],
+            [5, 'Testavimas'],
         ];
 
         $demoGradesSql = <<<SQL
