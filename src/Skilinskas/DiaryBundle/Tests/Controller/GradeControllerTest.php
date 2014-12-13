@@ -26,48 +26,6 @@ class GradeControllerTest extends WebTestCase
         $this->assertEquals($gStudentId, $g['studentId']);
         $this->assertEquals($gDate, $g['date']);
     }
-    public function testSubject () {
-        $subject = new Subject();
-        $name = 9;
-        $subject->setName($name);
-
-        $s = $subject->getAll();
-        $this->assertEquals($name, $s['name']);
-    }
-
-    public function testStudent () {
-        $student = new Student();
-        $name = 'Tester';
-        $surname = 'Test';
-        $student->setName($name);
-        $student->setSurname($surname);
-
-        $s = $student->getAll();
-        $this->assertEquals($name, $s['name']);
-        $this->assertEquals($surname, $s['surname']);
-    }
-
-    public function testGetSubjects()
-    {
-        $client = static::createClient();
-        $client->request('GET', '/api/get/subjects');
-
-        $response = $client->getResponse()->getContent();
-
-        $r = json_decode($response);
-        $this->assertEquals(true, $r->success);
-    }
-
-    public function testGetStudents()
-    {
-        $client = static::createClient();
-        $client->request('GET', '/api/get/students');
-
-        $response = $client->getResponse()->getContent();
-
-        $r = json_decode($response);
-        $this->assertEquals(true, $r->success);
-    }
 
     public function testGetGrades()
     {

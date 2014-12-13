@@ -2,14 +2,14 @@ skilinskas_diary_get_grades:
     path:     /api/get/grades
     defaults: { _controller: SkilinskasDiaryBundle:Grade:getGrades }
 
-skilinskas_diary_get_students:
-    path:     /api/get/students
-    defaults: { _controller: SkilinskasDiaryBundle:Grade:getStudents }
-
-skilinskas_diary_get_subjects:
-    path:     /api/get/subjects
-    defaults: { _controller: SkilinskasDiaryBundle:Grade:getSubjects }
-
 skilinskas_diary_add_grade:
     path:     /api/add/grade
     defaults: { _controller: SkilinskasDiaryBundle:Grade:addGrade }
+
+skilinskas_diary_get_students:
+    path:     /api/get/students
+    defaults: { _controller: SkilinskasDiaryBundle:Student:getStudents }
+
+skilinskas_diary_get_subjects:
+    path:     /api/get/subjects
+    defaults: { _controller: SkilinskasDiaryBundle:Subject:getSubjects }
